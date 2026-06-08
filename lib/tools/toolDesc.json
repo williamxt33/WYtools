@@ -1,0 +1,545 @@
+{
+  "length": {
+    "what": "Length is one of the most fundamental measurements, yet different countries and industries use entirely different units. The Length Converter instantly translates between meters, centimeters, kilometers, feet, inches, yards, miles, nautical miles, and more — updating in real time as you type. Whether you're shopping from an international store that lists sizes in inches while your wardrobe thinks in centimeters, following a blueprint that mixes metric and imperial, or just trying to make sense of a travel distance given in miles, this tool removes the friction of the conversion entirely.",
+    "howToUse": [
+      "Type a value into any unit field — all other fields update instantly as you type.",
+      "Scroll through the available units to find the one you need; the list covers metric, imperial, and nautical units.",
+      "Click the copy button beside any result to copy it to your clipboard for use elsewhere."
+    ]
+  },
+  "area": {
+    "what": "Area measurements differ widely across industries and regions: real estate in the United States is listed in square feet or acres, European listings use square meters, agricultural land is measured in hectares in most countries but acres in others, and large geographic areas use square kilometers or square miles. The Area Converter supports square millimeters, square centimeters, square meters, square kilometers, square feet, square yards, square miles, acres, and hectares. Whether you're comparing property listings across countries, planning a garden layout, or working with geographic data, this tool makes the conversion immediate and accurate.",
+    "howToUse": [
+      "Enter an area value in the unit you know — for example square meters or acres.",
+      "All other supported units update in real time with the equivalent area.",
+      "Use the copy button beside any field to grab the converted value you need."
+    ]
+  },
+  "volume": {
+    "what": "Volume comes up constantly in cooking, chemistry, fuel pricing, and everyday life — and the units in use vary significantly by country and context. US recipes call for cups, tablespoons, and fluid ounces; European recipes use milliliters; fuel is sold by the liter in most countries but by the gallon in the US; and lab protocols may specify cubic centimeters. The Volume Converter handles liters, milliliters, cubic meters, cubic centimeters, US and UK gallons, fluid ounces, cups, pints, and quarts, making it indispensable for international cooking, comparing fuel prices, or working through chemistry problems.",
+    "howToUse": [
+      "Enter a volume in any supported unit field — liters, gallons, cups, or others.",
+      "Every other unit field updates instantly with the equivalent volume.",
+      "Click the copy button beside any result to use the value in a recipe, specification, or calculation."
+    ]
+  },
+  "angle-plane": {
+    "what": "Angles are expressed in different units depending on the discipline. Degrees are the everyday standard — 360 per full turn — while radians are the unit of choice in mathematics and programming because they simplify trigonometric formulas. Gradians divide a full turn into 400 parts and are common in surveying. Arcminutes and arcseconds appear in astronomy and GPS coordinates. The Angle Converter translates between degrees, radians, gradians, arcminutes, arcseconds, milliradians, and full turns instantly.",
+    "howToUse": [
+      "Enter an angle in the unit you know — all other representations update in real time.",
+      "Useful for converting between what a formula expects (radians) and what a measuring tool returns (degrees).",
+      "Arcminutes and arcseconds are most relevant for GPS coordinates and astronomical positions."
+    ]
+  },
+  "time": {
+    "what": "Time is expressed in many units — from milliseconds in software to years in project planning — and the conversions are not always intuitive, especially once you get beyond hours and days into weeks, months, and years with their variable lengths. The Time Converter translates between milliseconds, seconds, minutes, hours, days, weeks, months, and years instantly. It's particularly useful for software developers working with timeouts and cache TTLs given in seconds, project managers estimating durations across different units, or anyone trying to quickly convert a duration like \"31,536,000 seconds\" into something meaningful.",
+    "howToUse": [
+      "Enter a time duration into the unit field you are starting from — seconds, hours, or any other unit.",
+      "All other unit fields, from milliseconds up to years, update instantly.",
+      "Click the copy button beside any result to use the converted value in documentation, code, or planning."
+    ]
+  },
+  "frequency": {
+    "what": "Frequency measures how many times a repeating event occurs per second, expressed in hertz. It appears in audio engineering (sound frequencies), electronics (oscillator and clock speeds), telecommunications (radio and Wi-Fi bands), and physics. RPM bridges mechanical and electrical domains — motor speed in rotations per minute converted directly to hertz. The Frequency Converter supports millihertz, hertz, kilohertz, megahertz, gigahertz, terahertz, and RPM.",
+    "howToUse": [
+      "Enter a frequency value in the unit you have — all equivalent units update in real time.",
+      "RPM to Hz conversion is useful for motor and engine speed calculations.",
+      "GHz and MHz are most relevant for CPU clocks, Wi-Fi channels, and radio frequencies."
+    ]
+  },
+  "weight": {
+    "what": "Different parts of the world measure weight in completely different systems — the United States uses pounds and ounces, most other countries use kilograms and grams, and the UK still commonly uses stone for body weight. The Weight Converter bridges all of these, supporting kilograms, grams, milligrams, metric tons, pounds, ounces, and stone in one place. It's useful for adapting cooking recipes from foreign sources, calculating shipping costs, tracking fitness goals across different apps, or simply understanding the weight of a package listed on an international retailer.",
+    "howToUse": [
+      "Enter your weight value in the field corresponding to the unit you already know.",
+      "Every other unit field updates in real time with the equivalent value.",
+      "Click the copy button beside any result to grab the converted value."
+    ]
+  },
+  "temperature": {
+    "what": "Temperature scales vary by country and discipline — Celsius is the everyday standard for most of the world, Fahrenheit is still the norm in the United States, and Kelvin is the absolute scale used throughout physics and chemistry where negative temperatures are not permitted. Rankine is the absolute equivalent of Fahrenheit, used in some US engineering fields. Gas Mark is a cooking scale still found in British and Irish recipes. The Temperature Converter translates between all five instantly.",
+    "howToUse": [
+      "Type a temperature value into any field — Celsius, Fahrenheit, Kelvin, Rankine, or Gas Mark.",
+      "All other scales update immediately with the converted values.",
+      "Gas Mark values range roughly from 1 (135 °C / 275 °F) to 9 (246 °C / 475 °F)."
+    ]
+  },
+  "speed": {
+    "what": "Speed is expressed in different units depending on the context — road signs use km/h in most countries and mph in the US and UK, aviation and maritime navigation use knots, and scientific work uses meters per second. The Speed Converter handles all of these, letting you translate between km/h, mph, m/s, knots, and feet per second instantly. It's handy when comparing vehicle performance specs listed by manufacturers in different markets, interpreting weather or wind reports, reading aviation briefings, or converting speed limits when driving in an unfamiliar country.",
+    "howToUse": [
+      "Enter a speed value into any of the available unit fields.",
+      "All other unit fields update instantly with the equivalent speed.",
+      "Click the copy button beside any result to copy it for use in a document or other application."
+    ]
+  },
+  "acceleration": {
+    "what": "Acceleration measures how quickly velocity changes over time. The SI unit is meters per second squared, but g-force — acceleration relative to standard gravity (9.80665 m/s²) — is widely used in aviation, automotive crash testing, and physics to express forces on the human body. The Acceleration Converter supports m/s², ft/s², standard gravity (g), gal (Galileo, used in geophysics), and milligal.",
+    "howToUse": [
+      "Enter an acceleration value in the unit you know — all equivalents update in real time.",
+      "G-force is often the most intuitive unit for human-scale contexts such as vehicle launches or aircraft manoeuvres.",
+      "Gal and milligal are primarily used in gravimetry and geophysical surveys."
+    ]
+  },
+  "force": {
+    "what": "Force — a push or pull on an object — is measured in newtons in the SI system. However, other units persist across industries: pound-force in US mechanical engineering, kilogram-force in older technical literature, dyne in the CGS system, and kip (kilopound-force) in structural engineering. The Force Converter supports newtons, kilonewtons, meganewtons, dyne, gram-force, kilogram-force, pound-force, poundal, and kip.",
+    "howToUse": [
+      "Enter a force value in any supported unit — all other equivalents update instantly.",
+      "Pound-force and kilogram-force are common in datasheets for mechanical components.",
+      "Kip is frequently used in structural and civil engineering load specifications."
+    ]
+  },
+  "pressure": {
+    "what": "Pressure — force per unit area — is expressed in different units across different fields: pascals in science, bar in meteorology and industrial systems, PSI in US plumbing and automotive, atmospheres in diving and chemistry, and mmHg in medicine. The Pressure Converter supports Pascal, hectopascal, kilopascal, megapascal, gigapascal, bar, millibar, atmosphere, torr, mmHg, inHg, PSI, and PSF.",
+    "howToUse": [
+      "Enter a pressure value in the unit you know — all other units update in real time.",
+      "Weather reports use hectopascal (hPa) or millibar; tire pressure uses PSI or bar; blood pressure uses mmHg.",
+      "1 atm ≈ 101.325 kPa ≈ 14.696 PSI — a useful anchor point across all three systems."
+    ]
+  },
+  "torque": {
+    "what": "Torque is a rotational force — the tendency of a force to rotate an object around an axis — measured in newton-meters in the SI system. Car engine torque is frequently quoted in pound-feet in the US and newton-meters in Europe for the same value. Smaller fastener torque specs often use pound-inches or newton-meters. The Torque Converter supports newton-meter, kilogram-force meter, pound-foot, and pound-inch.",
+    "howToUse": [
+      "Enter a torque value in any unit — all other equivalents appear instantly.",
+      "Automotive torque specs are typically in N·m or lb·ft — enter either to see the other.",
+      "Fastener torque specs may use N·m or lb·in depending on the tool and region."
+    ]
+  },
+  "density": {
+    "what": "Density measures mass per unit volume and is used in materials science, chemistry, engineering, and fluid dynamics to characterise substances. The SI unit is kilograms per cubic meter, but grams per cubic centimeter (equivalent to g/mL) is common in chemistry, while imperial engineering uses pounds per cubic foot or cubic inch. The Density Converter supports kg/m³, g/cm³, g/mL, lb/ft³, and lb/in³.",
+    "howToUse": [
+      "Enter a density value in any supported unit — all equivalents appear instantly.",
+      "Water's density is 1 g/cm³ = 1000 kg/m³ — a convenient reference point.",
+      "lb/in³ is frequently used in US materials engineering and machining datasheets."
+    ]
+  },
+  "energy": {
+    "what": "Energy appears in many units depending on the context: joules in physics, kilowatt-hours on electricity bills, calories in nutrition, BTUs in heating and cooling, and electronvolts in particle physics. The Energy Converter supports joules, kilojoules, megajoules, gigajoules, calorie, kilocalorie, watt-hour, kilowatt-hour, megawatt-hour, BTU, electronvolt, erg, foot-pound, therm, and ton of TNT.",
+    "howToUse": [
+      "Enter an energy value in any unit — all other representations update in real time.",
+      "kWh is the unit on electricity bills; kcal is the \"Calorie\" on food labels (1 food Cal = 1 kcal = 4,184 J).",
+      "Electronvolts are used for atomic-scale energies; BTU is common in US HVAC specifications."
+    ]
+  },
+  "power": {
+    "what": "Power — the rate of energy transfer — is measured in watts in the SI system. Horsepower remains common in automotive and industrial contexts, BTU per hour is used in HVAC, and tons of refrigeration in commercial cooling equipment. The Power Converter supports microwatts, milliwatts, watts, kilowatts, megawatts, gigawatts, mechanical horsepower, metric horsepower, BTU per hour, and ton of refrigeration.",
+    "howToUse": [
+      "Enter a power value in the unit you know — all equivalents update instantly.",
+      "1 mechanical horsepower ≈ 745.7 W; 1 metric horsepower ≈ 735.5 W — they are not identical.",
+      "Ton of refrigeration and BTU/hr are the standard units in US air conditioning specifications."
+    ]
+  },
+  "charge": {
+    "what": "Electric charge is measured in coulombs in the SI system. In practical electronics, milliampere-hours (mAh) are far more commonly encountered — particularly for battery capacity ratings on phones, laptops, and power banks. The Electric Charge Converter supports picocoulombs, nanocoulombs, microcoulombs, millicoulombs, coulombs, kilocoulombs, ampere-hours, milliampere-hours, and elementary charge.",
+    "howToUse": [
+      "Enter a charge value in any unit — all other magnitudes update in real time.",
+      "Battery capacity in mAh to coulombs: multiply mAh by 3.6 to get coulombs.",
+      "Elementary charge (e) is the charge of a single proton or electron — useful for atomic-scale calculations."
+    ]
+  },
+  "voltage": {
+    "what": "Voltage — electric potential difference — is measured in volts. Household mains power is 120 V or 230 V, batteries range from 1.2 V to 48 V, and sensor signals and microcontroller I/O operate at millivolt levels. High-voltage power transmission and some industrial equipment operate at kilovolts. The Voltage Converter supports nanovolts, microvolts, millivolts, volts, kilovolts, and megavolts.",
+    "howToUse": [
+      "Enter a voltage in any unit — all other magnitudes update in real time.",
+      "Millivolts are common in sensor output and thermocouple readings.",
+      "Kilovolts appear in high-voltage power supplies, CRT displays, and electric vehicle fast chargers."
+    ]
+  },
+  "current": {
+    "what": "Electric current — the flow of electric charge — is measured in amperes. Most practical electronics and microcontroller work deals in milliamperes or microamperes, while industrial and power systems operate in full amperes or kiloamperes. The Current Converter supports picoamperes, nanoamperes, microamperes, milliamperes, amperes, and kiloamperes.",
+    "howToUse": [
+      "Enter a current in any unit — all other magnitudes update immediately.",
+      "Microcontroller GPIO pins typically source or sink a few milliamperes; USB provides up to 500 mA or 3 A.",
+      "Picoamperes and nanoamperes appear in sensitive measurement equipment and photodetector outputs."
+    ]
+  },
+  "resistance": {
+    "what": "Electrical resistance — the opposition to current flow — is measured in ohms. Resistors in electronics range from fractions of an ohm (power shunts) to megohms (pull-up resistors, insulation testers). Gigaohm values appear in electrostatic discharge protection and high-impedance measurement circuits. The Resistance Converter supports microohms, milliohms, ohms, kilohms, megohms, and gigaohms.",
+    "howToUse": [
+      "Enter a resistance value in any unit — all other magnitudes update in real time.",
+      "Resistor values in circuit schematics are most commonly in ohms, kilohms, and megohms.",
+      "Milliohms and microohms are used for contact resistance, cable resistance, and shunt resistors."
+    ]
+  },
+  "capacitance": {
+    "what": "Capacitance measures a component's ability to store electrical charge, expressed in farads. Practical capacitors span a vast range: picofarads in radio-frequency and oscillator circuits, nanofarads in signal filtering, microfarads in power supply decoupling, and millifarads in audio crossovers and supercapacitors. The Capacitance Converter supports picofarads, nanofarads, microfarads, millifarads, and farads.",
+    "howToUse": [
+      "Enter a capacitance in any unit — all other magnitudes update instantly.",
+      "Component datasheets typically specify values in pF, nF, or µF — enter any to see the others.",
+      "Supercapacitors and ultracapacitors are often rated in farads or millifarads."
+    ]
+  },
+  "inductance": {
+    "what": "Inductance measures a component's ability to store energy in a magnetic field when current flows through it, expressed in henries. High-frequency switching circuits use microhenry inductors, audio transformers work in millihenries, and power-line filtering chokes may be rated in henries. The Inductance Converter supports microhenries, millihenries, and henries.",
+    "howToUse": [
+      "Enter an inductance value in any unit — all other magnitudes update instantly.",
+      "RF and switching power supply inductors are typically in the µH range.",
+      "Audio and power transformers are specified in mH or H."
+    ]
+  },
+  "magnetic-flux": {
+    "what": "Magnetic flux density (the B-field) measures the strength of a magnetic field, expressed in teslas in the SI system. The gauss, from the older CGS system, remains common in some laboratory and industrial contexts — 1 tesla equals 10,000 gauss. Earth's magnetic field is approximately 25–65 microteslas. MRI machines operate at 1.5–3 teslas. The Magnetic Flux Converter supports nanotesla, microtesla, millitesla, tesla, and gauss.",
+    "howToUse": [
+      "Enter a magnetic flux density in any unit — all other magnitudes update in real time.",
+      "Earth's field (~50 µT) and MRI strength (~1.5–3 T) are useful reference points.",
+      "Gauss is still widely used in older literature and some industrial sensor datasheets."
+    ]
+  },
+  "illuminance": {
+    "what": "Illuminance measures how much luminous flux falls on a surface per unit area, expressed in lux in the SI system. It's used in lighting design, photography, plant growing, and workplace safety standards. Foot-candles are the non-metric equivalent used primarily in the US film and photography industries. Typical indoor office lighting is 300–500 lux; direct sunlight exceeds 100,000 lux. The Illuminance Converter supports lux, foot-candle, and phot.",
+    "howToUse": [
+      "Enter an illuminance value in any unit — all other representations update in real time.",
+      "1 foot-candle ≈ 10.76 lux — relevant when working between US and international lighting specs.",
+      "Photography exposure guides and plant growth charts often specify illuminance in lux or foot-candles."
+    ]
+  },
+  "radioactivity": {
+    "what": "Radioactivity is measured in becquerels in the SI system — one becquerel equals one nuclear decay per second. The curie is an older unit still in widespread use, particularly in the United States, representing the activity of one gram of radium-226 (3.7 × 10¹⁰ decays per second). The Radioactivity Converter supports becquerel, kilobecquerel, megabecquerel, gigabecquerel, curie, millicurie, and microcurie.",
+    "howToUse": [
+      "Enter a radioactivity value in any unit — all other units update in real time.",
+      "Medical diagnostic doses are typically in the megabecquerel to gigabecquerel range.",
+      "The curie remains common in US nuclear medicine and industrial radiography datasheets."
+    ]
+  },
+  "radiation-dose": {
+    "what": "Radiation dose measures the biological effect of ionising radiation on living tissue. The sievert is the SI unit of effective dose; the rem (roentgen equivalent man) is the older US unit still encountered in nuclear industry and medical contexts — one sievert equals 100 rem. Annual background radiation is approximately 2–3 millisieverts. The Radiation Dose Converter supports sieverts, millisieverts, microsieverts, rem, and millirem.",
+    "howToUse": [
+      "Enter a dose value in any unit — all other magnitudes update in real time.",
+      "Annual background dose (~2–3 mSv) and a chest X-ray (~0.1 mSv) are useful reference points.",
+      "Rem and millirem are still standard in US nuclear power plant reporting and occupational dose records."
+    ]
+  },
+  "substance": {
+    "what": "The mole is the SI unit for amount of chemical substance, defined as exactly 6.02214076 × 10²³ elementary entities (Avogadro's number). Chemists work in everything from nanomoles for trace analyses to kilomoles in industrial-scale reactions. The Substance Converter supports nanomoles, micromoles, millimoles, moles, and kilomoles.",
+    "howToUse": [
+      "Enter a substance amount in any unit — all magnitudes update instantly.",
+      "Lab-scale reactions typically work in millimoles or micromoles; industrial quantities reach kilomoles.",
+      "Useful for scaling a reaction from a small-batch synthesis up to pilot or production quantities."
+    ]
+  },
+  "digital-storage": {
+    "what": "Digital storage capacity is expressed in bytes and their SI multiples (kilobytes, megabytes, gigabytes) as well as binary multiples (kibibytes, mebibytes, gibibytes). The distinction matters: a hard drive manufacturer's gigabyte (10⁹ bytes) differs slightly from a computer's gibibyte (2³⁰ bytes), which is why a \"1 TB\" drive shows as ~931 GiB in an operating system. The Digital Storage Converter supports bits, nibbles, bytes, kilobytes through exabytes, and kibibytes through pebibytes.",
+    "howToUse": [
+      "Enter a storage value in any unit — all other magnitudes update in real time.",
+      "KB/MB/GB/TB use powers of 10 (SI); KiB/MiB/GiB/TiB use powers of 2 (binary) — they are not the same.",
+      "The bit/byte distinction matters for network speeds (bits) vs. file sizes (bytes)."
+    ]
+  },
+  "data-rate": {
+    "what": "Data transfer rates appear in internet plan marketing, network hardware specifications, and file transfer applications — often in deliberately confusing units. ISPs advertise speeds in megabits per second while file managers show progress in megabytes per second, a ratio of 8:1 that makes downloads appear slower than the plan speed suggests. The Data Rate Converter supports bits, kilobits, megabits, gigabits, and terabits per second, plus their byte equivalents.",
+    "howToUse": [
+      "Enter a data rate in any unit — all other representations update in real time.",
+      "Divide your ISP speed in Mbps by 8 to get the maximum download speed in MB/s — this tool does it instantly.",
+      "Network hardware specs are in Mbps or Gbps; file transfer tools show MB/s or GB/s."
+    ]
+  },
+  "ratio": {
+    "what": "Ratios and proportions are expressed in different formats depending on the field: percent in everyday contexts, permille in blood alcohol limits and bond yields, parts per million in water quality and air pollution reports, parts per billion in trace chemistry and toxicology. The Ratio Converter translates between fraction, percent (%), permille (‰), parts per million (ppm), parts per billion (ppb), and parts per trillion (ppt).",
+    "howToUse": [
+      "Enter a ratio value in any format — all other representations update instantly.",
+      "1 ppm = 0.0001% = 0.001‰ — a reference that is easy to confuse without a converter.",
+      "WHO drinking water limits and air quality standards are typically expressed in ppm or ppb."
+    ]
+  },
+  "counting": {
+    "what": "Counting units — dozen, gross, ream, and others — are remnants of pre-decimal trade systems that persist in specific industries and everyday language. A dozen is 12, a baker's dozen 13, a gross is 144 (a dozen dozens), and a ream is 500 sheets of paper. The Counting Converter supports piece, pair, dozen, baker's dozen, score, quire, gross, ream, and great gross (1,728).",
+    "howToUse": [
+      "Enter a quantity in any counting unit — all equivalents update in real time.",
+      "Gross and great gross are still used in wholesale and manufacturing order quantities.",
+      "Ream is the standard unit for ordering printer paper; quire (25 sheets) appears in bookbinding."
+    ]
+  },
+  "currency": {
+    "what": "Exchange rates fluctuate constantly, making it difficult to know the true cost of international transactions without a live reference. The Currency Converter uses up-to-date exchange rates to convert between over 150 world currencies, covering major pairs like USD/EUR as well as less commonly traded currencies. It's useful for travellers budgeting a trip, freelancers invoicing clients in foreign currencies, online shoppers buying from international stores, or investors tracking the value of holdings denominated in other currencies. The displayed rate reflects the mid-market rate — the real exchange rate before any bank or service adds its own markup.",
+    "howToUse": [
+      "Select the source currency from the first dropdown and enter the amount you want to convert.",
+      "Select the target currency from the second dropdown.",
+      "The converted amount appears instantly using the current mid-market exchange rate.",
+      "Click the swap icon between the two fields to reverse the conversion direction."
+    ]
+  },
+  "crypto": {
+    "what": "Cryptocurrency prices change by the second, and keeping track of the real-world value of digital assets can be challenging without a live conversion tool. The Cryptocurrency Converter provides up-to-date conversions between major cryptocurrencies — including Bitcoin (BTC), Ethereum (ETH), and others — and major fiat currencies like USD, EUR, and GBP. Whether you're evaluating a potential purchase, tracking a portfolio position, calculating the equivalent value before a transaction, or simply curious about the current price of a coin, this tool gives you a fast and accurate answer without navigating to an exchange.",
+    "howToUse": [
+      "Select a cryptocurrency — such as BTC or ETH — from the first dropdown.",
+      "Select the fiat currency you want to convert to, such as USD or EUR, from the second dropdown.",
+      "Enter an amount in either field and the other will update in real time with the current equivalent.",
+      "Prices reflect live market data and refresh automatically — reload the page if the rate looks stale."
+    ]
+  },
+  "unit-price": {
+    "what": "Supermarkets and online stores frequently sell the same product in different packaging sizes and quantities, making it genuinely hard to identify the best value without doing the arithmetic. The Unit Price Converter calculates the price per unit for multiple products simultaneously so you can compare them on equal terms — whether that unit is a gram, a milliliter, a sheet, or a piece. Enter the price and quantity for each option and the tool ranks them by cost per unit, instantly cutting through the marketing noise of \"family size\" and \"bulk deal\" packaging claims.",
+    "howToUse": [
+      "Enter the price and quantity for your first product option in the top row.",
+      "Enter the price and quantity for a second product option in the second row.",
+      "The tool calculates the price per unit for each and highlights the better value.",
+      "Add more rows to compare additional options, or adjust values to model different purchase scenarios."
+    ]
+  },
+  "morse-code": {
+    "what": "Morse code is a method of encoding text as a sequence of short signals (dots) and long signals (dashes), originally developed for telegraph communication in the 1830s by Samuel Morse and Alfred Vail. Despite being nearly two centuries old, it remains in active use in amateur radio, aviation navigation beacons, and emergency signalling — and is still required knowledge for some radio operator licences. The Morse Code Translator converts any text into International Morse Code and decodes Morse code back to readable text instantly, supporting the full alphabet, numerals, and common punctuation marks.",
+    "howToUse": [
+      "Type plain text into the top input field to convert it to Morse code.",
+      "Type Morse code — dots (.) and dashes (-) separated by spaces between letters — into the bottom field to decode it back to plain text.",
+      "Separate words with a forward slash (/) when entering Morse code manually.",
+      "Click the copy button on either field to copy the result."
+    ]
+  },
+  "binary-hex-text": {
+    "what": "Computers store and process all data as binary — sequences of 0s and 1s — and developers frequently work with hexadecimal as a more compact and readable representation of the same data. The Binary / Hex / Text Converter lets you freely translate between plain text, its binary (base-2) representation, and its hexadecimal (base-16) equivalent in real time. It's an essential tool for developers debugging low-level code or network packets, computer science students learning about number systems and character encoding, or anyone working with memory dumps, bitfields, or raw data streams.",
+    "howToUse": [
+      "Paste or type your input into the appropriate field: the text field for plain characters, the binary field for base-2, or the hex field for base-16.",
+      "The other two representations update instantly.",
+      "Binary input must use only 0s and 1s in groups of 8 bits (one byte per character); hexadecimal input accepts digits 0–9 and letters A–F.",
+      "Click the copy button beside any output to use the converted value."
+    ]
+  },
+  "base64": {
+    "what": "Base64 is a binary-to-text encoding scheme that converts arbitrary data into a string containing only printable ASCII characters, making it safe to transmit through text-based protocols and systems that would otherwise mangle binary data. The Base64 Encoder / Decoder instantly encodes any text or data string to Base64 and decodes Base64 strings back to their original form. It's routinely used by developers embedding images directly in CSS or HTML, handling authentication tokens including JWTs, transmitting binary data through JSON APIs, encoding email attachments, and verifying the contents of encoded credentials.",
+    "howToUse": [
+      "Paste or type plain text into the left field to encode it to Base64.",
+      "Paste a Base64 string into the right field to decode it back to plain text.",
+      "Conversion happens in real time as you type — no need to click a button.",
+      "Click the copy button beside either field to copy the result. Note that encoding increases the output size by roughly 33%."
+    ]
+  },
+  "color": {
+    "what": "In web development and digital design, the same color can be represented in multiple formats: a HEX code like #2563eb, RGB values like rgb(37, 99, 235), HSL notation which separates hue from lightness, or one of the 140 named CSS colors. Different tools, design applications, and codebases all have their own preferred format, making conversion a constant need. The Color Code Converter translates between HEX, RGB, HSL, and CSS color names instantly, letting you take a color from Figma, a design system, or a browser's color picker and use it in whatever format your next step requires.",
+    "howToUse": [
+      "Enter a color value in any supported format: a HEX code such as #2563eb, an RGB value, or an HSL value.",
+      "The equivalent values in all other formats appear instantly alongside a live color preview swatch.",
+      "Verify the correct color is shown in the swatch before copying.",
+      "Click the copy button beside any format to copy that specific representation for use in CSS, design tools, or code."
+    ]
+  },
+  "number-base": {
+    "what": "Humans think in decimal (base-10), but computers operate in binary (base-2), and programmers regularly work with octal (base-8) and hexadecimal (base-16) for memory addresses, file permissions, color codes, and bitwise operations. The Number Base Converter translates any number between binary, octal, decimal, and hexadecimal representations instantly and in both directions. It's an indispensable tool for computer science students learning number systems, developers decoding hex memory addresses or color values, systems programmers working with Unix file permissions in octal, or anyone trying to understand what 0b11001010 or 0x3F actually equals in decimal.",
+    "howToUse": [
+      "Enter a number into the field that matches its current base — binary, octal, decimal, or hexadecimal.",
+      "The equivalent values in all other bases appear instantly.",
+      "Binary accepts only 0 and 1; octal accepts 0–7; hexadecimal accepts 0–9 and A–F.",
+      "Click the copy button beside any result to copy it to your clipboard."
+    ]
+  },
+  "password": {
+    "what": "Weak and reused passwords remain one of the most common causes of account compromise and data breaches — a problem that is entirely preventable with properly generated credentials. A strong password should be long, use a mix of character types, and be unique to every account, which is impossible to achieve consistently without a dedicated tool. The Password Generator creates cryptographically random passwords with full control over length, inclusion of uppercase letters, lowercase letters, numbers, and special characters. Use it every time you create a new account or update an old password, and store the result in a trusted password manager rather than trying to memorise it.",
+    "howToUse": [
+      "Set your desired password length using the slider or by typing a number directly.",
+      "Toggle which character types to include: uppercase letters, lowercase letters, numbers, and special symbols.",
+      "Click Generate to produce a new cryptographically random password.",
+      "Click the copy icon to copy the password to your clipboard, then save it in a password manager — do not try to memorise it."
+    ]
+  },
+  "uuid": {
+    "what": "A UUID (Universally Unique Identifier) is a 128-bit identifier formatted as a 36-character string in the pattern xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx, designed to be unique across all space and time without requiring a central issuing authority. Version 4 UUIDs are generated entirely from random values, making the probability of two identical UUIDs negligible. The UUID Generator produces one or multiple v4 UUIDs instantly. Developers use them as database primary keys, API request correlation IDs, session tokens, file names, and wherever a unique identifier is needed across distributed systems without coordination.",
+    "howToUse": [
+      "Set the number of UUIDs you want to generate using the count input.",
+      "Click Generate to produce that many random version 4 UUIDs.",
+      "Click Copy beside any individual UUID to copy it, or use Copy All to grab the entire list at once.",
+      "Each generation produces entirely new values — UUIDs are never reused or stored."
+    ]
+  },
+  "qr-code": {
+    "what": "QR (Quick Response) codes are two-dimensional barcodes capable of storing URLs, contact details, Wi-Fi credentials, plain text, payment information, and more — all readable by any smartphone camera in a fraction of a second. The QR Code Generator creates a downloadable QR code image from any text or URL you provide, with no registration or software required. They're widely used on business cards, restaurant menus, product packaging, event tickets, and marketing materials to bridge print and digital content seamlessly.",
+    "howToUse": [
+      "Enter the URL, plain text, or contact information you want to encode into the input field.",
+      "The QR code preview updates in real time as you type.",
+      "Optionally adjust the output size and error correction level — higher error correction makes the code scannable even if partially damaged.",
+      "Click Download to save the QR code as a PNG image ready to embed in documents, print, or share."
+    ]
+  },
+  "barcode": {
+    "what": "Barcodes are machine-readable representations of numeric or alphanumeric data, used extensively in retail product labelling, warehouse inventory management, healthcare specimen tracking, postal services, and library cataloguing. The Barcode Generator supports multiple industry-standard formats including Code 128 for general-purpose alphanumeric data, EAN-13 and EAN-8 for retail products, UPC-A for North American retail, and Code 39. Whether you're labelling products for a small shop, generating inventory tags, building a prototype for a retail application, or creating labels for a maker project, this tool produces clean print-ready barcode images instantly.",
+    "howToUse": [
+      "Select the barcode format that matches your use case: Code 128 for general alphanumeric data, EAN-13 or UPC-A for retail products.",
+      "Enter the data to encode — EAN-13 and UPC-A accept numbers only; Code 128 accepts letters and numbers.",
+      "The barcode preview renders instantly below the input.",
+      "Click Download to save the barcode as an image for printing labels or embedding in documents."
+    ]
+  },
+  "hash": {
+    "what": "A cryptographic hash function takes an input of any length and produces a fixed-length output string — a fingerprint of the data — where even a single-character change to the input produces a completely different hash. The Hash Generator supports four widely used algorithms: MD5 (128-bit), SHA-1 (160-bit), SHA-256, and SHA-512. Developers use hashes to verify the integrity of downloaded files, store passwords securely, generate checksums for data comparison, and create digital signatures. MD5 and SHA-1 are considered cryptographically broken for security-sensitive purposes and should only be used for non-security tasks like checksums.",
+    "howToUse": [
+      "Type or paste the text you want to hash into the input field.",
+      "The MD5, SHA-1, SHA-256, and SHA-512 hashes are all generated and displayed simultaneously.",
+      "Click the copy button next to any algorithm to copy that specific hash to your clipboard.",
+      "For password storage in applications, use a dedicated slow algorithm like bcrypt instead of the hashes shown here."
+    ]
+  },
+  "random-number": {
+    "what": "True randomness is surprisingly hard to produce and easy to get subtly wrong, yet it underpins simulations, statistical sampling, cryptography, games, lotteries, and scientific experiments. The Random Number Generator produces one or more cryptographically random numbers within any range you specify, with options for integers or decimals and configurable bounds. It's more statistically reliable than mental number selection — humans are notoriously bad at picking random numbers — and far more flexible when you need dozens of values at once.",
+    "howToUse": [
+      "Enter a minimum value and a maximum value to define your range.",
+      "Choose whether to generate integers (whole numbers) or decimals.",
+      "Set the quantity of numbers to generate if you need more than one.",
+      "Click Generate and copy any result directly from the output list."
+    ]
+  },
+  "lorem-ipsum": {
+    "what": "When designing a website, application, or printed document, placeholder text is essential for visualising how the layout will hold up with real content before the actual copy exists. Lorem Ipsum — a scrambled passage derived from Cicero's De Finibus Bonorum et Malorum written in 45 BC — has been the standard placeholder text in typesetting and design since the 1500s. The Lorem Ipsum Generator produces configurable amounts of placeholder text by paragraph, sentence, or word count, letting you populate mockups and prototypes at any scale without waiting for a copywriter.",
+    "howToUse": [
+      "Choose whether to generate output by paragraphs, sentences, or individual words.",
+      "Set the count — how many paragraphs, sentences, or words you need.",
+      "Click Generate to produce the placeholder text.",
+      "Click the copy button to copy the entire output and paste it into your design tool, document, or prototype."
+    ]
+  },
+  "random-name": {
+    "what": "Realistic-looking random names serve many practical purposes: populating test databases with plausible user records, creating fictional characters for writing or game development, generating sample data for software demos and presentations, and protecting real identities in example screenshots or case studies. The Random Name Generator draws from locale-specific first and last name lists to produce names that look authentic rather than obviously procedurally generated. You can generate names in bulk, choose from multiple locales, and select gender-specific or mixed output.",
+    "howToUse": [
+      "Choose a locale to determine the cultural and linguistic origin of the generated names.",
+      "Select a gender option — male, female, or mixed.",
+      "Set the number of names to generate.",
+      "Click Generate, then copy individual names or use Copy All to grab the full list."
+    ]
+  },
+  "fake-data": {
+    "what": "Using real personal data — email addresses, phone numbers, home addresses — in development, testing, and demo environments is a privacy and security liability. The Fake Data Generator produces realistic fictional personal information including email addresses, phone numbers that follow valid country formats, physical addresses with plausible street names and postal codes, usernames, and company names. It's an essential tool for developers seeding test databases, QA testers filling out registration forms, and designers creating realistic-looking mockups without putting anyone's real information at risk.",
+    "howToUse": [
+      "Select which data fields you need by toggling them on: email, phone, address, full name, username, or company.",
+      "Choose the locale to match the regional format — US phone numbers look different from UK or German ones.",
+      "Set the number of records to generate.",
+      "Click Generate, then copy individual values or export the full set."
+    ]
+  },
+  "dice-roller": {
+    "what": "Tabletop roleplaying games and board games rely on dice to introduce randomness and fair outcomes, but physical dice get lost, specialty types are expensive, and online games need a digital equivalent all players trust equally. The Dice Roller supports all standard tabletop RPG dice — D4, D6, D8, D10, D12, and D20 — as well as custom-sided dice and rolling multiple dice simultaneously. Each roll shows individual die results and the total, making it perfect for D&D sessions, board game replacements, or any situation where you need verifiably fair randomness from a specific die type.",
+    "howToUse": [
+      "Select the type of die you want to roll — D4, D6, D8, D10, D12, D20, or a custom-sided die.",
+      "Set the number of dice to roll simultaneously if your game requires multiple at once.",
+      "Click Roll — each individual die result and the combined total are displayed.",
+      "Click Roll again for a fresh result. The previous roll is shown for reference."
+    ]
+  },
+  "coin-flipper": {
+    "what": "A coin flip is the simplest mechanism for making a fair binary decision — 50/50, no bias, no deliberation. Physical coin flips can be subtly influenced by technique, and nobody wants to stop what they're doing to find a coin. The Coin Flipper simulates a perfectly fair random binary outcome instantly, removing any physical or psychological bias from the process. It's useful for settling disputes, breaking ties in games, making low-stakes decisions between equally viable options, or teaching basic probability to students.",
+    "howToUse": [
+      "Click Flip to flip the coin — the result, Heads or Tails, is displayed immediately.",
+      "Click Flip again for another result whenever you need it.",
+      "The flip history below shows previous results so you can track outcomes across multiple flips."
+    ]
+  },
+  "random-color": {
+    "what": "Picking a random color is more useful than it might sound — it helps designers break out of default palette habits, generates starting points for color scheme exploration, tests how UI components handle unexpected color values, and provides variety for prototypes and generative art. The Random Color Generator produces a completely random color on each click and displays it simultaneously in HEX, RGB, and HSL formats so the result can be used directly in any design tool or CSS file without a separate conversion step.",
+    "howToUse": [
+      "Click Generate to produce a random color — a preview swatch and the HEX, RGB, and HSL values all appear at once.",
+      "Click the copy button beside any color format to copy that specific value.",
+      "Click Generate again to produce a new color.",
+      "Use the lock icon to pin a color you want to keep while continuing to generate others."
+    ]
+  },
+  "team-randomizer": {
+    "what": "Splitting a list of people into fair random groups is a common task for teachers, workshop facilitators, team leads, and event organisers — and doing it manually is both tedious and prone to unconscious bias. The Groups Generator takes a list of names and a desired number of groups, then distributes them randomly into balanced teams, handling uneven splits gracefully. You can regenerate the split instantly with a single click until the result works for your context, and copy the output for sharing.",
+    "howToUse": [
+      "Enter your list of names into the input area, one name per line.",
+      "Set the number of groups you want to create.",
+      "Click Generate to randomly and evenly distribute the names across the groups.",
+      "Click Shuffle to regenerate if the current split doesn't work for you."
+    ]
+  },
+  "percentage": {
+    "what": "Percentages appear constantly in daily life — sale discounts, tax rates, exam scores, tipping, interest rates, and statistics — yet mental percentage calculations are surprisingly easy to get wrong under time pressure. The Percentage Calculator covers the three most common needs in one place: calculating what X% of a number is, working out what percentage one number is of another, and finding the original value before a known percentage change was applied. It's an instant sanity check for any percentage-based arithmetic, from verifying a sale price to understanding a year-on-year growth figure.",
+    "howToUse": [
+      "Select the type of percentage calculation you need from the available options.",
+      "Enter the required values into the input fields for your chosen calculation type.",
+      "The result updates instantly as you type.",
+      "Switch between calculation types at any time without losing your entered values."
+    ]
+  },
+  "tip": {
+    "what": "Calculating a tip and splitting the total bill fairly between multiple people is one of those deceptively fiddly tasks that comes up at almost every restaurant meal, especially when the group is large or the conversation about what percentage to leave becomes prolonged. The Tip Calculator lets you enter the bill total, choose a tip percentage from common options or enter a custom value, and specify the number of people splitting the cost — then instantly shows the tip amount, total bill, and each person's share.",
+    "howToUse": [
+      "Enter the total bill amount before tip.",
+      "Choose a tip percentage from the quick-select buttons or type a custom percentage.",
+      "Enter the number of people splitting the bill.",
+      "The tip amount, total bill, and each person's share are displayed. Use the round-up option to land on a clean per-person amount."
+    ]
+  },
+  "loan": {
+    "what": "Taking out a loan is one of the most significant financial commitments most people make, yet the relationship between the loan amount, interest rate, and repayment term isn't immediately intuitive — small differences in rate or term can mean thousands of dollars in additional interest over the life of a loan. The Loan Calculator shows your exact monthly payment, total amount repaid, and total interest charged for any combination of principal, annual interest rate, and loan term. Use it to compare competing loan offers, understand the true cost of different terms, or work out the maximum you can comfortably borrow given a monthly budget.",
+    "howToUse": [
+      "Enter the loan principal — the total amount you are borrowing.",
+      "Enter the annual interest rate as a percentage.",
+      "Set the loan term in months or years.",
+      "Your monthly payment, total amount repaid, and total interest charged are displayed. Adjust the term to see how it changes your monthly payment and total cost."
+    ]
+  },
+  "compound-interest": {
+    "what": "Compound interest is the mechanism by which money grows not just on the original principal but on every previous interest payment as well, creating an exponential growth curve that becomes dramatically powerful over long time horizons. The Compound Interest Calculator shows how a starting balance grows over time given an initial deposit, regular contribution amount, annual interest rate, and compounding frequency. It's invaluable for visualising long-term savings goals, comparing investment accounts with different compounding terms, and understanding in concrete terms why starting to save early has such a significant impact.",
+    "howToUse": [
+      "Enter your starting principal — the initial amount you are investing or saving.",
+      "Set the annual interest rate and compounding frequency (daily, monthly, or annually).",
+      "Optionally enter a regular contribution amount and how often you will make it.",
+      "Set the investment period in years. The results show your final balance, total contributions, total interest earned, and a year-by-year growth breakdown."
+    ]
+  },
+  "tax": {
+    "what": "Income tax in most countries is applied progressively — different portions of your income are taxed at different rates as you move through brackets — which means your effective tax rate is always lower than the marginal rate of the highest bracket you reach. The Tax Calculator estimates your tax liability based on gross income and filing status, showing how your income is distributed across brackets, the tax owed in each, your total bill, and your effective rate. Use it for budgeting, planning salary negotiations, understanding after-tax income, or estimating quarterly self-employment tax payments.",
+    "howToUse": [
+      "Enter your gross annual income.",
+      "Select your filing status from the dropdown.",
+      "The calculator instantly breaks down your income across tax brackets, the tax owed in each, your total tax bill, and your effective tax rate.",
+      "Adjust your income to model the impact of a pay rise, a new job offer, or additional freelance income on your take-home pay."
+    ]
+  },
+  "bmi": {
+    "what": "Body Mass Index (BMI) is a simple index calculated from height and weight that is widely used as an initial screening tool to categorise whether a person's weight falls in a range associated with healthy, underweight, overweight, or obese classifications. The BMI Calculator accepts your height and weight in metric or imperial units and instantly returns your BMI value alongside the corresponding WHO category. While BMI is a practical first indicator, it does not distinguish between muscle mass and fat mass and can misrepresent health risk for certain body types — treat it as one data point and consult a healthcare professional for a full assessment.",
+    "howToUse": [
+      "Select metric (centimeters and kilograms) or imperial (feet, inches, and pounds) units.",
+      "Enter your height and current weight.",
+      "Your BMI value and the corresponding category — underweight, normal, overweight, or obese — are shown instantly.",
+      "Use the result as a general indicator only and consult a healthcare professional for a complete health assessment."
+    ]
+  },
+  "age": {
+    "what": "Calculating an exact age down to years, months, and days sounds simple but is surprisingly tricky when you account for leap years, variable month lengths, and whether the birthday has occurred yet in the current calendar year. The Age Calculator takes a date of birth and a reference date — defaulting to today — and returns the precise age in years, months, and days, along with the number of days remaining until the next birthday. It's useful for accurately filling in official forms, settling birthday disputes, tracking developmental milestones, or satisfying that nagging curiosity about exactly how many days old you are.",
+    "howToUse": [
+      "Enter your date of birth using the date picker.",
+      "The reference date defaults to today — leave it or change it to calculate age at a specific past or future date.",
+      "Your exact age in years, months, and days is displayed along with the number of days until your next birthday."
+    ]
+  },
+  "calorie": {
+    "what": "Daily calorie needs vary significantly based on age, biological sex, height, weight, and activity level — a sedentary office worker and a competitive athlete of identical height and weight may have daily energy needs that differ by over 1,000 calories. The Calorie Calculator uses the Mifflin-St Jeor equation, currently the most validated formula for estimating resting metabolic rate, combined with an activity multiplier to produce your Total Daily Energy Expenditure (TDEE). The result gives you an evidence-based estimate of how many calories you need to maintain your weight, with adjustments for gradual loss or gain.",
+    "howToUse": [
+      "Enter your age, biological sex, height, and current weight.",
+      "Select your typical daily activity level from the dropdown — be honest, as overestimating activity is one of the most common mistakes.",
+      "Your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) are calculated and displayed.",
+      "Use the maintenance, weight loss, and weight gain targets as a science-based starting point for dietary planning."
+    ]
+  },
+  "body-fat": {
+    "what": "Body fat percentage — the proportion of your total body mass that is fat — is a more informative health metric than weight alone, because it distinguishes between fat mass and lean mass such as muscle, bone, and organs. The Body Fat Calculator uses the U.S. Navy circumference method, which requires only a tape measure, to estimate body fat percentage without any specialised equipment. Results are displayed alongside healthy range benchmarks by sex and age group, giving you a practical baseline for tracking fitness progress and body composition changes over time.",
+    "howToUse": [
+      "Select your biological sex — the U.S. Navy formula uses different measurements for males and females.",
+      "Measure and enter your neck circumference and waist circumference using a soft tape measure.",
+      "If you are female, also measure and enter your hip circumference at the widest point.",
+      "Your estimated body fat percentage and corresponding fitness category are displayed instantly."
+    ]
+  },
+  "date-difference": {
+    "what": "Calculating the exact duration between two calendar dates is harder than it looks once you account for leap years, months with different numbers of days, and whether the end date itself should be included in the count. The Date Difference Calculator takes any two dates and returns the exact interval in days, weeks, months, and years simultaneously. It's useful for project deadline planning, calculating how long a contract has run, figuring out days until an event, determining someone's age at a specific date, or confirming whether a time-sensitive legal or medical period has elapsed.",
+    "howToUse": [
+      "Select the start date using the first date picker.",
+      "Select the end date using the second date picker.",
+      "The exact difference is shown simultaneously in total days, weeks, months, and years.",
+      "Toggle whether to include the end date itself in the count if you need an inclusive interval calculation."
+    ]
+  },
+  "fraction": {
+    "what": "Fractions are fundamental to mathematics and appear constantly in cooking, construction, music theory, probability, and scientific calculations — yet arithmetic with fractions is something many people find unintuitive long after school. The Fraction Calculator performs addition, subtraction, multiplication, and division on any two fractions, mixed numbers, or whole numbers, displaying both the step-by-step working and the fully simplified result. It handles improper fractions, negative values, and common denominators automatically, making it equally useful for a student checking homework or a cook scaling a recipe.",
+    "howToUse": [
+      "Enter the first fraction by typing its numerator and denominator into the respective fields. For a mixed number, fill in the whole number field too.",
+      "Select the operation: addition, subtraction, multiplication, or division.",
+      "Enter the second fraction in the same way.",
+      "The simplified result appears immediately along with the step-by-step working shown below."
+    ]
+  },
+  "scientific": {
+    "what": "A scientific calculator extends basic arithmetic into the mathematical territory required for physics, engineering, chemistry, statistics, and advanced mathematics — functions that a standard four-function calculator cannot handle. The Scientific Calculator supports trigonometric functions (sin, cos, tan, and their inverses in both degrees and radians), logarithms in natural and base-10 forms, exponentiation, square and nth roots, factorials, the constants π and e, and parentheses for complex expressions. It's designed for students working through STEM coursework, professionals performing field calculations, or anyone who needs more than basic arithmetic.",
+    "howToUse": [
+      "Use the on-screen buttons or type directly on your keyboard to build a mathematical expression.",
+      "Trigonometric functions work in degrees by default — click the DEG/RAD toggle to switch to radians for scientific or engineering work.",
+      "Press the equals button or hit Enter to evaluate the expression.",
+      "Your calculation history is shown above the display so you can review and reuse previous results."
+    ]
+  }
+}
