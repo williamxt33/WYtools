@@ -13,8 +13,7 @@ export async function POST(request: Request) {
   }
   try {
     const { email, password } = body as { email: unknown; password: unknown };
-
-    if (!email || !password) {
+    if (!email || typeof password !== "string") {
       return NextResponse.json(
         { error: "Email and password are required" },
         { status: 400 },
@@ -60,6 +59,9 @@ export async function POST(request: Request) {
 
     return response;
   } catch {
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 },
+    );
   }
 }
