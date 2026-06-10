@@ -13,16 +13,24 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
   try {
-    const name = (body.name ?? "").trim();
-    const email = (body.email ?? "").trim().toLowerCase();
-    const password: string = body.password ?? "";
+    const { name, email, password } = body as { name: unknown; email: unknown; password: unknown };
 
-    if (!name || !email || !password) {
+    if (typeof name !== "string" || typeof email !== "string" || typeof password !== "string") {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
-    if (!EMAIL_RE.test(email)) {
-      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim().toLowerCase();
+
+    if (!trimmedName || !trimmedEmail || !password) {
+      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+    }
+
+    if (!EMAIL_RE.test(trimmedEmail)) {
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 },
+      );
     }
 
     if (password.length < 8) {
@@ -34,16 +42,22 @@ export async function POST(request: Request) {
 
     await connectDB();
 
-    const existing = await User.findOne({ email });
+    const existing = await User.findOne({ email: trimmedEmail });
     if (existing) {
-      return NextResponse.json({ error: "Email already in use" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Email already in use" },
+        { status: 400 },
+      );
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-    await User.create({ name, email, passwordHash });
+    await User.create({ name: trimmedName, email: trimmedEmail, passwordHash });
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch {
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 },
+    );
   }
 }
