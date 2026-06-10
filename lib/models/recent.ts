@@ -12,6 +12,7 @@ const RecentSchema = new Schema<IRecent>({
   usedAt: { type: Date, default: Date.now },
 });
 
+RecentSchema.index({ userId: 1, toolId: 1 }, { unique: true });
 RecentSchema.index({ userId: 1, usedAt: -1 });
 
 const Recent =
