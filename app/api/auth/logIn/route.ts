@@ -5,8 +5,14 @@ import connectDB from "@/lib/mongodb";
 import User from "@/lib/models/user";
 
 export async function POST(request: Request) {
+  let body: Record<string, unknown>;
   try {
-    const { email, password } = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+  try {
+    const { email, password } = body as { email: unknown; password: unknown };
 
     if (!email || !password) {
       return NextResponse.json(

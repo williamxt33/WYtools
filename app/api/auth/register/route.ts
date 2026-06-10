@@ -6,8 +6,13 @@ import User from "@/lib/models/user";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
+  let body: Record<string, unknown>;
   try {
-    const body = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+  try {
     const name = (body.name ?? "").trim();
     const email = (body.email ?? "").trim().toLowerCase();
     const password: string = body.password ?? "";
