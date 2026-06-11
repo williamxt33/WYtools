@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import connectDB from "@/lib/mongodb";
 import User from "@/lib/models/user";
 
@@ -9,21 +10,36 @@ export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
     body = await request.json();
-  } catch {
+  } catch (e) {
+    console.error(e);
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
   try {
-    const { name, email, password } = body as { name: unknown; email: unknown; password: unknown };
+    const { name, email, password } = body as {
+      name: unknown;
+      email: unknown;
+      password: unknown;
+    };
 
-    if (typeof name !== "string" || typeof email !== "string" || typeof password !== "string") {
-      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof password !== "string"
+    ) {
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 },
+      );
     }
 
     const trimmedName = name.trim();
     const trimmedEmail = email.trim().toLowerCase();
 
     if (!trimmedName || !trimmedEmail || !password) {
-      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 },
+      );
     }
 
     if (!EMAIL_RE.test(trimmedEmail)) {
@@ -40,6 +56,9 @@ export async function POST(request: Request) {
       );
     }
 
+    const JWT_SECRET = process.env.JWT_SECRET;
+    if (!JWT_SECRET) throw new Error("JWT_SECRET is not configured");
+
     await connectDB();
 
     const existing = await User.findOne({ email: trimmedEmail });
@@ -51,10 +70,26 @@ export async function POST(request: Request) {
     }
 
     const passwordHash = await bcrypt.hash(password, 10);
-    await User.create({ name: trimmedName, email: trimmedEmail, passwordHash });
+    const user = await User.create({ name: trimmedName, email: trimmedEmail, passwordHash });
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "7d" });
 
-    return NextResponse.json({ success: true }, { status: 201 });
-  } catch {
+    const response = NextResponse.json(
+      {success: true},
+      {status: 201}
+    )
+
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    })
+
+    return response
+    
+  } catch (e) {
+    console.error(e);
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 },

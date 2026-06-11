@@ -2,19 +2,28 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { categories, getToolsBySubCategory, type ToolCategory, type ToolSubCategory } from "@/lib/tools/registry"
 import { BiChevronDown } from "react-icons/bi"
 import { MdLanguage } from "react-icons/md"
 import SearchBar from "@/components/ui/searchbar"
 import { languages, type Language } from "@/lib/languages"
 import { toolIcons } from "@/lib/tools/icons"
+import { usePathname } from "next/navigation"
+
+type User = {name: string; email: string};
 
 export default function NavBarBig() {
   const [openCategory, setOpenCategory] = useState<ToolCategory | null>(null)
+  const [openProfile, setOpenProfile] = useState(false)
   const [activeSubCat, setActiveSubCat] = useState<ToolSubCategory | null>(null)
   const [openLanguage, setOpenLanguage] = useState(false)
   const [language, setLanguage] = useState<Language>(languages[0])
+
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  const pathname = usePathname();
 
   function handleCategoryEnter(catValue: ToolCategory) {
     const cat = categories.find((c) => c.value === catValue)
@@ -22,14 +31,68 @@ export default function NavBarBig() {
     setActiveSubCat(cat?.subCategories[0]?.value ?? null)
   }
 
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+
+      const res = await fetch("/api/auth/me");
+
+      if (!res.ok) {
+        setUser(null); 
+        setLoading(false);
+        return;
+      }
+
+      const userData = await res.json();
+      setUser({ name: userData.name, email: userData.email });
+      setLoading(false);
+    }
+
+    load();
+  }, [ pathname ]);
+
+  const profileRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setOpenProfile(false)
+      }
+    }
+    document.addEventListener("click", handleClickOutside)
+    return () => document.removeEventListener("click", handleClickOutside)
+  }, [])
+
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "DELETE" });
+    if (pathname.includes("/profile")) {
+      window.location.href = "/";
+    } else {
+      window.location.reload();
+    }
+  }
+
+  const initials =
+    user?.name
+      .split(" ")
+      .slice(0, 2)
+      .map((w) => w[0]?.toUpperCase())
+      .join("") ?? "?";    
+
+  
+
   return (
     <header className="hidden lg:block sticky top-0 z-50 bg-background border-b border-border shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
       <nav className="w-full px-6 h-16 flex items-center justify-between">
-
         {/* Left: Logo */}
         <div className="flex items-center shrink-0">
           <Link href="/" className="flex items-center no-underline">
-            <Image src="/icons/full_logo.png" alt="WyTools logo" width={150} height={78} />
+            <Image
+              src="/icons/full_logo.png"
+              alt="WyTools logo"
+              width={150}
+              height={78}
+            />
           </Link>
         </div>
 
@@ -42,9 +105,14 @@ export default function NavBarBig() {
               onMouseEnter={() => handleCategoryEnter(cat.value)}
               onMouseLeave={() => setOpenCategory(null)}
             >
-              <Link href={`/tools/${cat.value}`} className="inline-flex flex-row items-center justify-center gap-2 py-1.5 px-2.5 rounded-lg text-base font-medium text-foreground cursor-pointer transition-colors duration-150 hover:text-primary">
+              <Link
+                href={`/tools/${cat.value}`}
+                className="inline-flex flex-row items-center justify-center gap-2 py-1.5 px-2.5 rounded-lg text-base font-medium text-foreground cursor-pointer transition-colors duration-150 hover:text-primary"
+              >
                 <span>{cat.label}</span>
-                <BiChevronDown className={`${openCategory === cat.value? "rotate-180 mt-1" : ""} size-5`}/>
+                <BiChevronDown
+                  className={`${openCategory === cat.value ? "rotate-180 mt-1" : ""} size-5`}
+                />
               </Link>
               {openCategory === cat.value && (
                 <div className="absolute top-[calc(100%+0.5px)] left-0 flex min-w-130 max-h-28 bg-background border border-border rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.12)] z-100">
@@ -62,18 +130,18 @@ export default function NavBarBig() {
                   <div className="flex-1 p-2 flex flex-col gap-[0.1rem] max-h-37.5 overflow-auto">
                     {activeSubCat &&
                       getToolsBySubCategory(activeSubCat).map((tool) => {
-                        const slug = tool.href.split("/").pop() ?? ""
-                        const ToolIcon = toolIcons[slug]
-                        return(
+                        const slug = tool.href.split("/").pop() ?? "";
+                        const ToolIcon = toolIcons[slug];
+                        return (
                           <Link
                             key={tool.href}
                             href={tool.href}
                             className="flex items-center gap-2 px-2 py-1 rounded-md text-[0.9rem] font-medium text-foreground no-underline whitespace-nowrap transition-colors duration-150 hover:text-primary"
                           >
-                              {ToolIcon && <ToolIcon size={13}/>}
-                              {tool.name}
+                            {ToolIcon && <ToolIcon size={13} />}
+                            {tool.name}
                           </Link>
-                        )
+                        );
                       })}
                   </div>
                 </div>
@@ -103,22 +171,65 @@ export default function NavBarBig() {
                     className={`flex items-center gap-[0.6rem] px-[0.6rem] py-[0.4rem] rounded-md cursor-pointer transition-colors duration-150 hover:bg-primary-light hover:text-primary${language.code === lang.code ? " text-primary font-semibold" : " text-foreground"}`}
                     onClick={() => setLanguage(lang)}
                   >
-                    <span className="text-[0.8rem] font-bold min-w-8">{lang.code}</span>
+                    <span className="text-[0.8rem] font-bold min-w-8">
+                      {lang.code}
+                    </span>
                     <span className="text-[0.9rem]">{lang.label}</span>
                   </li>
                 ))}
               </ul>
             )}
           </div>
-          <Link
-            href="/signin"
-            className="bg-primary text-white px-[1.1rem] py-[0.4rem] rounded-md whitespace-nowrap hover:bg-primary-hover transition-colors duration-150 no-underline"
-          >
-            Sign In
-          </Link>
-        </div>
 
+          {loading ? null : user ? (
+            <div ref={profileRef} className="relative">
+              <div
+                onClick={() => setOpenProfile((prev) => !prev)}
+                className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold shrink-0 select-none cursor-pointer"
+              >
+                {initials}
+              </div>
+              {openProfile && (
+                <div className="absolute flex flex-col gap-2.5 border border-border right-3.5 bg-background rounded-xl">
+                  <div className="flex flex-row items-center gap-2.5 px-6 py-5">
+                    <div className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold shrink-0 select-none">
+                      {initials}
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <span className="text-sm font-medium">{user?.name}</span>
+                      <span className="text-sm font-medium ">
+                        {user?.email}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <Link
+                      href="/profile"
+                      onClick={() => setOpenProfile(false)}
+                      className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
+                    >
+                      Profile
+                    </Link>
+                    <div
+                      onClick={handleLogout}
+                      className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
+                    >
+                      Sign Out
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href="/auth/login"
+              className="bg-primary text-white px-[1.1rem] py-[0.4rem] rounded-md whitespace-nowrap hover:bg-primary-hover transition-colors duration-150 no-underline"
+            >
+              Sign In
+            </Link>
+          )}
+        </div>
       </nav>
     </header>
-  )
+  );
 }
