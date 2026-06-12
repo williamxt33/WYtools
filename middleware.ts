@@ -28,14 +28,14 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
 
   if (!token) {
-    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+    return NextResponse.redirect(new URL(`/${locale}/auth/login`, request.url));
   }
 
   try {
     await jwtVerify(token, JWT_SECRET);
     return intlMiddleware(request);
   } catch {
-    return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+    return NextResponse.redirect(new URL(`/${locale}/auth/login`, request.url));
   }
 }
 

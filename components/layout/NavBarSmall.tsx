@@ -1,17 +1,78 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { useState } from "react"
-import { BiMenu, BiSearch, BiUser } from "react-icons/bi"
-import SearchBar from "@/components/ui/searchbar"
-import SideMenu from "./SideMenu"
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
+import { BiMenu, BiSearch, BiUser } from "react-icons/bi";
+import SearchBar from "@/components/ui/searchbar";
+import SideMenu from "./SideMenu";
+import { usePathname } from "next/navigation";
+
+type User = { name: string; email: string };
 
 export default function NavBarSmall() {
-  const [showSearch, setShowSearch] = useState(false)
-  const [showSideMenu, setShowSideMenu] = useState(false)
+  const [showSearch, setShowSearch] = useState(false);
+  const [showSideMenu, setShowSideMenu] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
-  const iconBtnClass = "bg-transparent border-0 cursor-pointer flex items-center justify-center text-foreground p-[0.4rem] rounded-md transition-colors duration-150 shrink-0 hover:text-primary"
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const pathname = usePathname();
+
+  const iconBtnClass =
+    "bg-transparent border-0 cursor-pointer flex items-center justify-center text-foreground p-[0.4rem] rounded-md transition-colors duration-150 shrink-0 hover:text-primary";
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+
+      const res = await fetch("/api/auth/me");
+
+      if (!res.ok) {
+        setUser(null);
+        setLoading(false);
+        return;
+      }
+
+      const userData = await res.json();
+      setUser({ name: userData.name, email: userData.email });
+      setLoading(false);
+    }
+
+    load();
+  }, [pathname]);
+
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(e.target as Node)
+      ) {
+        setOpenProfile(false);
+      }
+    }
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "DELETE" });
+    if (pathname.includes("/profile")) {
+      window.location.href = "/";
+    } else {
+      window.location.reload();
+    }
+  }
+
+  const initials =
+    user?.name
+      .split(" ")
+      .slice(0, 2)
+      .map((w) => w[0]?.toUpperCase())
+      .join("") ?? "?";
 
   return (
     <>
@@ -26,7 +87,13 @@ export default function NavBarSmall() {
           </button>
 
           <Link href="/" className="flex items-center no-underline">
-            <Image src="/icons/full_logo.png" alt="WyTools" width={110} height={57} priority />
+            <Image
+              src="/icons/full_logo.png"
+              alt="WyTools"
+              width={110}
+              height={57}
+              priority
+            />
           </Link>
 
           <div className="flex items-center gap-[0.1rem]">
@@ -37,9 +104,56 @@ export default function NavBarSmall() {
             >
               <BiSearch size={22} />
             </button>
-            <Link href="/signin" className={iconBtnClass} aria-label="Sign in">
-              <BiUser size={22} />
-            </Link>
+            {loading ? null : user ? (
+              <div ref={profileRef} className="relative">
+                <div
+                  onClick={() => setOpenProfile((prev) => !prev)}
+                  className="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold shrink-0 select-none cursor-pointer"
+                >
+                  {initials}
+                </div>
+                {openProfile && (
+                  <div className="absolute flex flex-col gap-2.5 border border-border right-3.5 bg-background rounded-xl">
+                    <div className="flex flex-row items-center gap-2.5 px-6 py-5">
+                      <div className="w-11 h-11 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold shrink-0 select-none">
+                        {initials}
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <span className="text-sm font-medium">
+                          {user?.name}
+                        </span>
+                        <span className="text-sm font-medium ">
+                          {user?.email}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <Link
+                        href="/profile"
+                        onClick={() => setOpenProfile(false)}
+                        className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
+                      >
+                        Profile
+                      </Link>
+                      <div
+                        onClick={handleLogout}
+                        className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
+                      >
+                        Sign Out
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href={`/auth/login?redirect=${encodeURIComponent(pathname)}`}
+                className={iconBtnClass}
+                aria-label="Sign in"
+              >
+                <BiUser size={22} />
+              </Link>
+            )}
           </div>
         </nav>
 
@@ -52,5 +166,5 @@ export default function NavBarSmall() {
 
       <SideMenu isOpen={showSideMenu} onClose={() => setShowSideMenu(false)} />
     </>
-  )
+  );
 }
