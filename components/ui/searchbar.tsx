@@ -19,8 +19,14 @@ export default function SearchBar({ placeholder, className }: SearchBarProps) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const filtered = query.trim()
-    ? tools.filter((t) => t.name.toLowerCase().includes(query.toLowerCase()))
+  const lowerQuery = query.trim().toLowerCase()
+  const filtered = lowerQuery
+    ? tools.filter((tool) => {
+        const slug = tool.href.split("/").pop() ?? ""
+        const translatedName = tR(`tools.${slug}.name`).toLowerCase()
+        const translatedDescription = tR(`tools.${slug}.description`).toLowerCase()
+        return translatedName.includes(lowerQuery) || translatedDescription.includes(lowerQuery)
+      })
     : tools
 
   const grouped = categories
