@@ -20,33 +20,38 @@ export default function ProfilePage() {
 
   useEffect(() => {
     async function load() {
-      const [userRes, likesRes, recentsRes] = await Promise.all([
-        fetch("/api/auth/me"),
-        fetch("/api/likes"),
-        fetch("/api/recents"),
-      ]);
+      try{
+        const [userRes, likesRes, recentsRes] = await Promise.all([
+          fetch("/api/auth/me"),
+          fetch("/api/likes"),
+          fetch("/api/recents"),
+        ]);
 
-      if (!userRes.ok) {
-        router.push("/auth/login");
-        return;
+        if (!userRes.ok) {
+          router.push("/auth/login");
+          return;
+        }
+
+        const userData = await userRes.json();
+        const likesData = likesRes.ok ? await likesRes.json() : { toolIds: [] };
+        const recentsData = recentsRes.ok ? await recentsRes.json() : { toolIds: [] };
+
+        setUser({ name: userData.name, email: userData.email });
+
+        const likedIds = likesData.toolIds as string[];
+        setFavorites(tools.filter((t) => likedIds.includes(t.href.split("/").pop() ?? "")));
+
+        const recentIds = recentsData.toolIds as string[];
+        const recentTools = recentIds
+          .map((id) => tools.find((t) => t.href.split("/").pop() === id))
+          .filter(Boolean) as Tool[];
+        setRecents(recentTools);
+      }catch{
+        setFavorites([])
+        setRecents([])
+      }finally{
+        setLoading(false);
       }
-
-      const userData = await userRes.json();
-      const likesData = likesRes.ok ? await likesRes.json() : { toolIds: [] };
-      const recentsData = recentsRes.ok ? await recentsRes.json() : { toolIds: [] };
-
-      setUser({ name: userData.name, email: userData.email });
-
-      const likedIds = likesData.toolIds as string[];
-      setFavorites(tools.filter((t) => likedIds.includes(t.href.split("/").pop() ?? "")));
-
-      const recentIds = recentsData.toolIds as string[];
-      const recentTools = recentIds
-        .map((id) => tools.find((t) => t.href.split("/").pop() === id))
-        .filter(Boolean) as Tool[];
-      setRecents(recentTools);
-
-      setLoading(false);
     }
     load();
   }, [router]);
@@ -81,7 +86,7 @@ export default function ProfilePage() {
 
   return (
     <main className="w-full max-w-275 mx-auto px-6 py-8 flex flex-col gap-8">
-      <div className="flex items-center justify-between gap-4 p-6 border border-border rounded-2xl">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 sm:p-6 border border-border rounded-2xl">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold shrink-0 select-none">
             {initials}

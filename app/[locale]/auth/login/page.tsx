@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -26,7 +28,7 @@ export default function LoginPage() {
         setError(data.error ?? "Something went wrong");
         return;
       }
-      router.push("/profile");
+      router.push(redirect ?? "/profile");
     } catch (e) {
       setError("Something went wrong");
     } finally {
@@ -54,14 +56,14 @@ export default function LoginPage() {
         </div>
       </section>
 
-      <section className="flex w-1/2 items-center justify-center px-8 py-12 bg-background">
+      <section className="flex-1 flex items-center justify-center px-8 py-12 bg-background">
         <div className="w-full max-w-sm">
           <h2 className="text-2xl font-bold text-foreground mb-1">Log In</h2>
 
           <p className="text-sm text-muted mb-6">
             New to here?{" "}
             <Link
-              href="/auth/register"
+              href={redirect ? `/auth/register?redirect=${encodeURIComponent(redirect)}` : "/auth/register"}
               className="text-primary hover:underline font-medium"
             >
               Create new account

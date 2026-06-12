@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { type Tool } from "@/lib/tools/registry";
 import { toolIcons } from "@/lib/tools/icons";
 import { BiHeart, BiSolidHeart } from "react-icons/bi";
@@ -19,6 +19,7 @@ type Props = { tool: Tool };
 
 export default function ToolCard({ tool }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
   const slug = tool.href.split("/").pop() ?? "";
   const Icon = toolIcons[slug] ?? categoryIcons[tool.category];
   const { likedIds, toggleLike } = useLikes();
@@ -27,15 +28,18 @@ export default function ToolCard({ tool }: Props) {
   async function handleLike(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    const res = await fetch("/api/likes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ toolId: slug }),
-    });
-    if (res.status === 401) { router.push("/auth/login"); return; }
-    if (res.ok) {
+    try {
+      const res = await fetch("/api/likes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ toolId: slug }),
+      });
+      if (res.status === 401) { router.push(`/auth/login?redirect=${encodeURIComponent(pathname)}`); return; }
+      if (!res.ok) return;
       const data = await res.json();
       toggleLike(slug, data.liked);
+    } catch {
+      // network or parse error — leave like state unchanged
     }
   }
 

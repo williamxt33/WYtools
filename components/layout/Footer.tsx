@@ -17,20 +17,20 @@ export default function Footer() {
         <div className="flex flex-col shrink-0">
           <h3 className="text-base font-semibold text-foreground mb-[0.85rem]">Navigate</h3>
           <ul className="list-none flex flex-col gap-[0.55rem]">
-            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">Home</Link></li>
-            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">Privacy Policy</Link></li>
-            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">TOS</Link></li>
-            <li><Link href="/about" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">About</Link></li>
+            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">Home</Link></li>
+            <li><Link href="/privacy" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">Privacy Policy</Link></li>
+            <li><Link href="/tos" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">TOS</Link></li>
+            <li><Link href="/about" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">About</Link></li>
           </ul>
         </div>
 
         <div className="flex flex-col shrink-0">
           <h3 className="text-base font-semibold text-foreground mb-[0.85rem]">Featured Tools</h3>
           <ul className="list-none flex flex-col gap-[0.55rem]">
-            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">Groups Generator</Link></li>
-            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">Wheel Spin Generator</Link></li>
-            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">BMI Calculator</Link></li>
-            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-foreground">Mortgage Calculator</Link></li>
+            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">Groups Generator</Link></li>
+            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">Wheel Spin Generator</Link></li>
+            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">BMI Calculator</Link></li>
+            <li><Link href="/" className="text-[0.85rem] text-muted no-underline transition-colors duration-150 hover:text-primary">Mortgage Calculator</Link></li>
           </ul>
         </div>
       </div>

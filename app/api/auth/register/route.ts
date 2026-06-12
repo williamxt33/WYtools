@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch (e) {
-    console.error(e);
+    console.error("Registration error:", e instanceof Error ? e.message : "Unknown error");
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
   try {
@@ -89,7 +89,7 @@ export async function POST(request: Request) {
     return response
     
   } catch (e) {
-    console.error(e);
+    console.error("Registration error:", e instanceof Error ? e.message : "Unknown error");
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 },

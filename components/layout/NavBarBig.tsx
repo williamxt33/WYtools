@@ -1,67 +1,84 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { useState, useEffect, useRef } from "react"
-import { categories, getToolsBySubCategory, type ToolCategory, type ToolSubCategory } from "@/lib/tools/registry"
-import { BiChevronDown } from "react-icons/bi"
-import { MdLanguage } from "react-icons/md"
-import SearchBar from "@/components/ui/searchbar"
-import { languages, type Language } from "@/lib/languages"
-import { toolIcons } from "@/lib/tools/icons"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
+import {
+  categories,
+  getToolsBySubCategory,
+  type ToolCategory,
+  type ToolSubCategory,
+} 
+from "@/lib/tools/registry";
+import { BiChevronDown, BiLogOut, BiUser } from "react-icons/bi";
+import { MdLanguage } from "react-icons/md";
+import SearchBar from "@/components/ui/searchbar";
+import { languages, type Language } from "@/lib/languages";
+import { toolIcons } from "@/lib/tools/icons";
+import { usePathname } from "next/navigation";
 
-type User = {name: string; email: string};
+type User = { name: string; email: string };
 
 export default function NavBarBig() {
-  const [openCategory, setOpenCategory] = useState<ToolCategory | null>(null)
-  const [openProfile, setOpenProfile] = useState(false)
-  const [activeSubCat, setActiveSubCat] = useState<ToolSubCategory | null>(null)
-  const [openLanguage, setOpenLanguage] = useState(false)
-  const [language, setLanguage] = useState<Language>(languages[0])
+  const [openCategory, setOpenCategory] = useState<ToolCategory | null>(null);
+  const [openProfile, setOpenProfile] = useState(false);
+  const [activeSubCat, setActiveSubCat] = useState<ToolSubCategory | null>(
+    null,
+  );
+  const [openLanguage, setOpenLanguage] = useState(false);
+  const [language, setLanguage] = useState<Language>(languages[0]);
 
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const pathname = usePathname();
 
   function handleCategoryEnter(catValue: ToolCategory) {
-    const cat = categories.find((c) => c.value === catValue)
-    setOpenCategory(catValue)
-    setActiveSubCat(cat?.subCategories[0]?.value ?? null)
+    const cat = categories.find((c) => c.value === catValue);
+    setOpenCategory(catValue);
+    setActiveSubCat(cat?.subCategories[0]?.value ?? null);
   }
 
-  useEffect(() => {
+useEffect(() => {
+    let cancelled = false;
     async function load() {
       setLoading(true);
-
-      const res = await fetch("/api/auth/me");
-
-      if (!res.ok) {
-        setUser(null); 
-        setLoading(false);
-        return;
+      try {
+        const res = await fetch("/api/auth/me");
+        if (!res.ok) {
+          if (!cancelled) setUser(null);
+          return;
+        }
+        const userData = await res.json();
+        if (!cancelled) {
+          setUser({ name: userData.name, email: userData.email });
+        }
+      } catch {
+        if (!cancelled) setUser(null);
+      } finally {
+        if (!cancelled) setLoading(false);
       }
-
-      const userData = await res.json();
-      setUser({ name: userData.name, email: userData.email });
-      setLoading(false);
     }
-
     load();
-  }, [ pathname ]);
+    return () => {
+      cancelled = true;
+    };
+  }, [pathname]);
 
-  const profileRef = useRef<HTMLDivElement>(null)
+  const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
-        setOpenProfile(false)
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(e.target as Node)
+      ) {
+        setOpenProfile(false);
       }
     }
-    document.addEventListener("click", handleClickOutside)
-    return () => document.removeEventListener("click", handleClickOutside)
-  }, [])
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "DELETE" });
@@ -77,9 +94,7 @@ export default function NavBarBig() {
       .split(" ")
       .slice(0, 2)
       .map((w) => w[0]?.toUpperCase())
-      .join("") ?? "?";    
-
-  
+      .join("") ?? "?";
 
   return (
     <header className="hidden lg:block sticky top-0 z-50 bg-background border-b border-border shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
@@ -183,12 +198,12 @@ export default function NavBarBig() {
 
           {loading ? null : user ? (
             <div ref={profileRef} className="relative">
-              <div
+              <button
                 onClick={() => setOpenProfile((prev) => !prev)}
                 className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold shrink-0 select-none cursor-pointer"
               >
                 {initials}
-              </div>
+              </button>
               {openProfile && (
                 <div className="absolute flex flex-col gap-2.5 border border-border right-3.5 bg-background rounded-xl">
                   <div className="flex flex-row items-center gap-2.5 px-6 py-5">
@@ -206,23 +221,25 @@ export default function NavBarBig() {
                     <Link
                       href="/profile"
                       onClick={() => setOpenProfile(false)}
-                      className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
+                      className="flex flex-row items-center gap-2.5 px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
                     >
+                      <BiUser size={18}/>
                       Profile
                     </Link>
-                    <div
+                    <button
                       onClick={handleLogout}
-                      className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
+                      className="flex flex-row items-center gap-2.5 text-left px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
                     >
+                      <BiLogOut size={18}/>
                       Sign Out
-                    </div>
+                    </button>
                   </div>
                 </div>
               )}
             </div>
           ) : (
             <Link
-              href="/auth/login"
+              href={`/auth/login?redirect=${encodeURIComponent(pathname)}`}
               className="bg-primary text-white px-[1.1rem] py-[0.4rem] rounded-md whitespace-nowrap hover:bg-primary-hover transition-colors duration-150 no-underline"
             >
               Sign In

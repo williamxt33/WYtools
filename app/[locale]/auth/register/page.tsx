@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +29,7 @@ export default function RegisterPage() {
         setError(data.error ?? "Something went wrong");
         return;
       }
-      router.push("/profile");
+      router.push(redirect ?? "/profile");
     } catch {
       setError("Something went wrong");
     } finally {
@@ -55,7 +57,7 @@ export default function RegisterPage() {
         </div>
       </section>
 
-      <section className="flex w-1/2 items-center justify-center px-8 py-12 bg-background">
+      <section className="flex-1 flex items-center justify-center px-8 py-12 bg-background">
         <div className="w-full max-w-sm">
           <h2 className="text-2xl font-bold text-foreground mb-1">
             Create account
@@ -63,7 +65,7 @@ export default function RegisterPage() {
           <p className="text-sm text-muted mb-6">
             Already have an account?{" "}
             <Link
-              href="/auth/login"
+              href={redirect ? `/auth/login?redirect=${encodeURIComponent(redirect)}` : "/auth/login"}
               className="text-primary hover:underline font-medium"
             >
               Sign in
