@@ -5,19 +5,28 @@ import { Search } from "lucide-react"
 import Link from "next/link"
 import { categories, tools } from "@/lib/tools/registry"
 import { categoryIcons, toolIcons } from "@/lib/tools/icons"
+import { useTranslations } from "next-intl"
 
 type SearchBarProps = {
   placeholder?: string
   className?: string
 }
 
-export default function SearchBar({ placeholder = "Search tools...", className }: SearchBarProps) {
+export default function SearchBar({ placeholder, className }: SearchBarProps) {
+  const t = useTranslations("SearchBar");
+  const tR = useTranslations("Registry");
   const [query, setQuery] = useState("")
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const filtered = query.trim()
-    ? tools.filter((t) => t.name.toLowerCase().includes(query.toLowerCase()))
+  const lowerQuery = query.trim().toLowerCase()
+  const filtered = lowerQuery
+    ? tools.filter((tool) => {
+        const slug = tool.href.split("/").pop() ?? ""
+        const translatedName = tR(`tools.${slug}.name`).toLowerCase()
+        const translatedDescription = tR(`tools.${slug}.description`).toLowerCase()
+        return translatedName.includes(lowerQuery) || translatedDescription.includes(lowerQuery)
+      })
     : tools
 
   const grouped = categories
@@ -49,7 +58,7 @@ export default function SearchBar({ placeholder = "Search tools...", className }
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setOpen(true)}
-          placeholder={placeholder}
+          placeholder={placeholder ?? t("placeholder")}
         />
         {query && (
           <button
@@ -66,7 +75,7 @@ export default function SearchBar({ placeholder = "Search tools...", className }
       {open && (
         <div className="absolute top-[calc(100%+8px)] left-0 right-0 min-w-80 bg-background border border-border rounded-xl shadow-[0_12px_32px_rgba(0,0,0,0.12)] p-2 z-100 max-h-105 overflow-y-auto">
           {grouped.length === 0 ? (
-            <p className="text-[0.85rem] text-muted text-center p-4">No tools found</p>
+            <p className="text-[0.85rem] text-muted text-center p-4">{t("noResults")}</p>
           ) : (
             grouped.map((cat) => {
               const Icon = categoryIcons[cat.value]
@@ -74,7 +83,7 @@ export default function SearchBar({ placeholder = "Search tools...", className }
                 <div key={cat.value} className="pb-1 not-first:border-t not-first:border-border not-first:pt-2 not-first:mt-1">
                   <p className="flex items-center gap-1.5 text-[0.7rem] font-bold tracking-[0.08em] uppercase text-primary pt-[0.3rem] px-[0.6rem] pb-[0.4rem]">
                     {Icon && <Icon size={13} />}
-                    {cat.label}
+                    {tR(`categories.${cat.value}`)}
                   </p>
                   {cat.tools.map((tool) => {
                     const slug = tool.href.split("/").pop() ?? ""
@@ -87,7 +96,7 @@ export default function SearchBar({ placeholder = "Search tools...", className }
                         onClick={() => { setOpen(false); setQuery("") }}
                       >
                         {ToolIcon && <ToolIcon size={15} className="shrink-0 text-muted" />}
-                        <span className="text-[0.9rem] font-medium text-foreground">{tool.name}</span>
+                        <span className="text-[0.9rem] font-medium text-foreground">{tR(`tools.${tool.href.split("/").pop()}.name`)}</span>
                       </Link>
                     )
                   })}

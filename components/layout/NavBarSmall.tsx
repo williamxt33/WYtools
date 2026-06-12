@@ -7,10 +7,12 @@ import { BiMenu, BiSearch, BiUser } from "react-icons/bi";
 import SearchBar from "@/components/ui/searchbar";
 import SideMenu from "./SideMenu";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 type User = { name: string; email: string };
 
 export default function NavBarSmall() {
+  const t = useTranslations("NavBar");
   const [showSearch, setShowSearch] = useState(false);
   const [showSideMenu, setShowSideMenu] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
@@ -133,13 +135,13 @@ export default function NavBarSmall() {
                         onClick={() => setOpenProfile(false)}
                         className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
                       >
-                        Profile
+                        {t("profile")}
                       </Link>
                       <div
                         onClick={handleLogout}
                         className=" px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
                       >
-                        Sign Out
+                        {t("signOut")}
                       </div>
                     </div>
                   </div>

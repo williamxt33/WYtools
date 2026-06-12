@@ -2,9 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 
 export default function LoginPage() {
+  const t = useTranslations("Login");
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
@@ -25,12 +28,12 @@ export default function LoginPage() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong");
+        setError(data.error ?? t("errorFallback"));
         return;
       }
       router.push(redirect ?? "/profile");
     } catch (e) {
-      setError("Something went wrong");
+      setError(t("errorFallback"));
     } finally {
       setLoading(false);
     }
@@ -47,57 +50,56 @@ export default function LoginPage() {
             WYtools
           </span>
           <h1 className="text-5xl font-bold text-white mb-5 leading-tight">
-            Welcome Back.
+            {t("welcomeBack")}
           </h1>
           <p className="text-blue-100 text-lg leading-relaxed max-w-sm">
-            Sign in to access your favorite tools, view recent activity, and
-            pick up right where you left off.
+            {t("sideDescription")}
           </p>
         </div>
       </section>
 
       <section className="flex-1 flex items-center justify-center px-8 py-12 bg-background">
         <div className="w-full max-w-sm">
-          <h2 className="text-2xl font-bold text-foreground mb-1">Log In</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-1">{t("title")}</h2>
 
           <p className="text-sm text-muted mb-6">
-            New to here?{" "}
+            {t("newHere")}{" "}
             <Link
               href={redirect ? `/auth/register?redirect=${encodeURIComponent(redirect)}` : "/auth/register"}
               className="text-primary hover:underline font-medium"
             >
-              Create new account
+              {t("createAccount")}
             </Link>
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-foreground">
-                Email
+                {t("email")}
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="example@gmail.com"
+                placeholder={t("emailPlaceholder")}
                 required
                 className="px-3 py-2.5 rounded-lg border border-border text-sm text-foreground bg-background placeholder:text-muted outline-none focus:border-primary transition-colors"
               />
             </div>
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-foreground">
-                Password
+                {t("password")}
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your Password"
+                placeholder={t("passwordPlaceholder")}
                 required
                 className="px-3 py-2.5 rounded-lg border border-border text-sm text-foreground bg-background placeholder:text-muted outline-none focus:border-primary transition-colors"
               />
               <p className="text-xs text-muted">
-                Must be at least 8 characters
+                {t("passwordHint")}
               </p>
             </div>
 
@@ -108,7 +110,7 @@ export default function LoginPage() {
               disabled={loading}
               className="mt-1 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover disabled:opacity-60 cursor-pointer border-0 transition-colors"
             >
-              {loading ? "Signing in…" : "Sign In"}
+              {loading ? t("signingIn") : t("signIn")}
             </button>
           </form>
         </div>

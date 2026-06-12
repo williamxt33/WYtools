@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { tools } from "@/lib/tools/registry";
 import type { Tool } from "@/lib/tools/registry";
 import ToolCard from "@/components/tools/ToolCard";
 import { BiLogOut, BiBookmark, BiHistory } from "react-icons/bi";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 
 type User = { name: string; email: string };
 type Tab = "favorites" | "recents";
 
 export default function ProfilePage() {
+  const t = useTranslations("Profile");
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("favorites");
@@ -20,7 +22,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     async function load() {
-      try{
+      try {
         const [userRes, likesRes, recentsRes] = await Promise.all([
           fetch("/api/auth/me"),
           fetch("/api/likes"),
@@ -46,10 +48,10 @@ export default function ProfilePage() {
           .map((id) => tools.find((t) => t.href.split("/").pop() === id))
           .filter(Boolean) as Tool[];
         setRecents(recentTools);
-      }catch{
-        setFavorites([])
-        setRecents([])
-      }finally{
+      } catch {
+        setFavorites([]);
+        setRecents([]);
+      } finally {
         setLoading(false);
       }
     }
@@ -103,7 +105,7 @@ export default function ProfilePage() {
           className="flex items-center gap-2 px-4 py-2 text-sm text-muted border border-border rounded-lg hover:border-red-400 hover:text-red-500 transition-colors duration-150 cursor-pointer bg-transparent"
         >
           <BiLogOut size={16} />
-          Log out
+          {t("logOut")}
         </button>
       </div>
 
@@ -126,8 +128,8 @@ export default function ProfilePage() {
                   <BiHistory size={15} />
                 )}
                 {tab === "favorites"
-                  ? `Favorites (${favorites.length})`
-                  : `Recents (${recents.length})`}
+                  ? t("favorites", { count: favorites.length })
+                  : t("recents", { count: recents.length })}
               </button>
             ))}
           </div>
@@ -135,9 +137,7 @@ export default function ProfilePage() {
 
         {activeTools.length === 0 ? (
           <p className="text-center py-16 text-muted text-sm">
-            {activeTab === "favorites"
-              ? "No favorites yet — heart a tool to save it here."
-              : "No recent tools — start using tools to see them here."}
+            {activeTab === "favorites" ? t("noFavorites") : t("noRecents")}
           </p>
         ) : (
           <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">

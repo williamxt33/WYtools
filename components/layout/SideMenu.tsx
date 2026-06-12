@@ -11,6 +11,7 @@ import {
 } from "@/lib/tools/registry";
 import { languages, type Language } from "@/lib/languages";
 import { categoryIcons, toolIcons } from "@/lib/tools/icons";
+import { useTranslations } from "next-intl";
 
 type SideMenuProps = {
   isOpen: boolean;
@@ -18,6 +19,8 @@ type SideMenuProps = {
 };
 
 export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
+  const t = useTranslations("NavBar");
+  const tR = useTranslations("Registry");
   const [openCategory, setOpenCategory] = useState<ToolCategory | null>(null);
   const [language, setLanguage] = useState<Language>(languages[0]);
   const [showLanguages, setShowLanguages] = useState(false);
@@ -82,7 +85,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
         {/* Categories accordion */}
         <div className="py-3 px-4 border-b border-border">
           <span className="block text-[0.68rem] font-bold tracking-[0.09em] uppercase text-muted mb-2">
-            Categories
+            {t("categories")}
           </span>
           {categories.map((cat) => {
             const Icon = categoryIcons[cat.value];
@@ -96,7 +99,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                     className={`${openCategory === cat.value ? "text-primary" : "text-black"} : flex items-center gap-2`}
                   >
                     {Icon && <Icon size={13} />}
-                    {cat.label}
+                    {tR(`categories.${cat.value}`)}
                   </span>
                   <BiChevronDown
                     className={`transition-transform duration-200 shrink-0 ${openCategory === cat.value ? "text-primary rotate-180" : ""}`}
@@ -107,7 +110,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                     {cat.subCategories.map((sub) => (
                       <div key={sub.value} className="mb-[0.6rem]">
                         <span className="block text-[0.68rem] font-bold tracking-[0.07em] uppercase text-muted pt-[0.2rem] pb-1">
-                          {sub.label}
+                          {tR(`subCategories.${sub.value}`)}
                         </span>
                         {getToolsBySubCategory(sub.value).map((tool) => {
                           const slug = tool.href.split("/").pop() ?? "";
@@ -125,7 +128,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
                                   className="shrink-0 opacity-70"
                                 />
                               )}
-                              {tool.name}
+                              {tR(`tools.${tool.href.split("/").pop()}.name`)}
                             </Link>
                           );
                         })}
@@ -144,7 +147,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             className="block text-center p-[0.6rem] bg-primary text-white! no-underline rounded-lg text-[0.9rem] font-semibold transition-colors duration-150 hover:bg-primary-hover"
             onClick={onClose}
           >
-            Sign In
+            {t("signIn")}
           </Link>
         </div>
       </div>
