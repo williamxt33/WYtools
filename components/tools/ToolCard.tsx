@@ -8,6 +8,7 @@ import { toolIcons } from "@/lib/tools/icons";
 import { BiHeart, BiSolidHeart } from "react-icons/bi";
 import { MdSwapHoriz, MdAutoAwesome, MdCalculate } from "react-icons/md";
 import { useLikes } from "@/lib/context/likes";
+import { useTranslations } from "next-intl";
 
 const categoryIcons = {
   converters: MdSwapHoriz,
@@ -18,6 +19,7 @@ const categoryIcons = {
 type Props = { tool: Tool };
 
 export default function ToolCard({ tool }: Props) {
+  const t = useTranslations("Registry");
   const router = useRouter();
   const pathname = usePathname();
   const slug = tool.href.split("/").pop() ?? "";
@@ -70,10 +72,10 @@ export default function ToolCard({ tool }: Props) {
         </button>
       </div>
       <span className="text-[0.95rem] font-semibold text-foreground">
-        {tool.name}
+        {t(`tools.${slug}.name`)}
       </span>
       <p className="text-[0.8rem] text-muted leading-[1.4]">
-        {tool.description}
+        {t(`tools.${slug}.description`)}
       </p>
     </Link>
   );

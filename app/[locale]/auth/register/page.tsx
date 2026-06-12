@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
 
 export default function RegisterPage() {
+  const t = useTranslations("Register");
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect");
@@ -26,12 +29,12 @@ export default function RegisterPage() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong");
+        setError(data.error ?? t("errorFallback"));
         return;
       }
       router.push(redirect ?? "/profile");
     } catch {
-      setError("Something went wrong");
+      setError(t("errorFallback"));
     } finally {
       setLoading(false);
     }
@@ -48,11 +51,10 @@ export default function RegisterPage() {
             WYTools
           </span>
           <h1 className="text-5xl font-bold text-white mb-5 leading-tight">
-            Join WYTools.
+            {t("joinTitle")}
           </h1>
           <p className="text-blue-100 text-lg leading-relaxed max-w-sm">
-            Create an account to track your favorite tools, see your recent
-            activity, and get the most out of everything WYTools has to offer.
+            {t("sideDescription")}
           </p>
         </div>
       </section>
@@ -60,28 +62,28 @@ export default function RegisterPage() {
       <section className="flex-1 flex items-center justify-center px-8 py-12 bg-background">
         <div className="w-full max-w-sm">
           <h2 className="text-2xl font-bold text-foreground mb-1">
-            Create account
+            {t("title")}
           </h2>
           <p className="text-sm text-muted mb-6">
-            Already have an account?{" "}
+            {t("alreadyHave")}{" "}
             <Link
               href={redirect ? `/auth/login?redirect=${encodeURIComponent(redirect)}` : "/auth/login"}
               className="text-primary hover:underline font-medium"
             >
-              Sign in
+              {t("signIn")}
             </Link>
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-foreground">
-                Name
+                {t("name")}
               </label>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Your Name"
+                placeholder={t("namePlaceholder")}
                 required
                 className="px-3 py-2.5 rounded-lg border border-border text-sm text-foreground bg-background placeholder:text-muted outline-none focus:border-primary transition-colors"
               />
@@ -89,13 +91,13 @@ export default function RegisterPage() {
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-foreground">
-                Email
+                {t("email")}
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="example@gmail.com"
+                placeholder={t("emailPlaceholder")}
                 required
                 className="px-3 py-2.5 rounded-lg border border-border text-sm text-foreground bg-background placeholder:text-muted outline-none focus:border-primary transition-colors"
               />
@@ -103,18 +105,18 @@ export default function RegisterPage() {
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-medium text-foreground">
-                Password
+                {t("password")}
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your Password"
+                placeholder={t("passwordPlaceholder")}
                 required
                 className="px-3 py-2.5 rounded-lg border border-border text-sm text-foreground bg-background placeholder:text-muted outline-none focus:border-primary transition-colors"
               />
               <p className="text-xs text-muted">
-                Must be at least 8 characters
+                {t("passwordHint")}
               </p>
             </div>
 
@@ -125,7 +127,7 @@ export default function RegisterPage() {
               disabled={loading}
               className="mt-1 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover transition-colors disabled:opacity-60 cursor-pointer border-0"
             >
-              {loading ? "Creating account…" : "Create account"}
+              {loading ? t("creating") : t("createAccount")}
             </button>
           </form>
         </div>

@@ -2,10 +2,12 @@
 
 import { useState } from "react"
 import { Units, getConvertedUnit, convertToAllUnits } from "@/lib/tools/converters/unitConverters"
+import { useTranslations } from "next-intl"
 
 type Mode = "quick" | "all"
 
 export default function UnitConverter({ unitType }: { unitType: string }) {
+  const t = useTranslations("UnitConverter")
   const [mode, setMode] = useState<Mode>("quick")
   const units = Units[unitType]?.units ?? []
   const [fromUnit, setFromUnit] = useState(units[0]?.value ?? '')
@@ -27,7 +29,7 @@ export default function UnitConverter({ unitType }: { unitType: string }) {
             mode === "quick" ? "bg-primary text-white" : "bg-background text-muted-foreground border border-black"
           }`}
         >
-          Quick Convert
+          {t("quickConvert")}
         </button>
         <button
           onClick={() => setMode("all")}
@@ -35,13 +37,13 @@ export default function UnitConverter({ unitType }: { unitType: string }) {
             mode === "all" ? "bg-primary text-white" : "bg-background text-muted-foreground border border-black"
           }`}
         >
-          All Units
+          {t("allUnits")}
         </button>
       </div>
 
       {/* Input row */}
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium">From:</label>
+        <label className="text-sm font-medium">{t("from")}</label>
         <div className="flex gap-2">
           <input
             type="number"
@@ -65,7 +67,7 @@ export default function UnitConverter({ unitType }: { unitType: string }) {
       {/* Quick Convert */}
       {mode === "quick" && (
         <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium">To:</label>
+          <label className="text-sm font-medium">{t("to")}</label>
           <div className="flex gap-2">
             <input
               type="number"
@@ -84,8 +86,8 @@ export default function UnitConverter({ unitType }: { unitType: string }) {
             </select>
           </div>
           <p className={inputValue == "" ? "hidden" : "block"}>
-            <span className="text-red-600 font-bold text-lg">Result:</span>
-            <span className="font-medium }">{quickResultDesc}</span>
+            <span className="text-red-600 font-bold text-lg">{t("result")}</span>
+            <span className="font-medium">{quickResultDesc}</span>
           </p>
         </div>
       )}

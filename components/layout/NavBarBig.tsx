@@ -13,20 +13,24 @@ from "@/lib/tools/registry";
 import { BiChevronDown, BiLogOut, BiUser } from "react-icons/bi";
 import { MdLanguage } from "react-icons/md";
 import SearchBar from "@/components/ui/searchbar";
-import { languages, type Language } from "@/lib/languages";
+import { languages } from "@/lib/languages";
 import { toolIcons } from "@/lib/tools/icons";
-import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 type User = { name: string; email: string };
 
 export default function NavBarBig() {
+  const t = useTranslations("NavBar");
+  const tR = useTranslations("Registry");
   const [openCategory, setOpenCategory] = useState<ToolCategory | null>(null);
   const [openProfile, setOpenProfile] = useState(false);
   const [activeSubCat, setActiveSubCat] = useState<ToolSubCategory | null>(
     null,
   );
   const [openLanguage, setOpenLanguage] = useState(false);
-  const [language, setLanguage] = useState<Language>(languages[0]);
+  const locale = useLocale();
+  const router = useRouter();
 
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -104,7 +108,7 @@ useEffect(() => {
           <Link href="/" className="flex items-center no-underline">
             <Image
               src="/icons/full_logo.png"
-              alt="WyTools logo"
+              alt={t("logoAlt")}
               width={150}
               height={78}
             />
@@ -124,7 +128,7 @@ useEffect(() => {
                 href={`/tools/${cat.value}`}
                 className="inline-flex flex-row items-center justify-center gap-2 py-1.5 px-2.5 rounded-lg text-base font-medium text-foreground cursor-pointer transition-colors duration-150 hover:text-primary"
               >
-                <span>{cat.label}</span>
+                <span>{tR(`categories.${cat.value}`)}</span>
                 <BiChevronDown
                   className={`${openCategory === cat.value ? "rotate-180 mt-1" : ""} size-5`}
                 />
@@ -138,7 +142,7 @@ useEffect(() => {
                         className={`px-[0.4rem] py-[0.35rem] rounded-md text-sm font-medium cursor-pointer transition-colors duration-120 hover:bg-primary-light hover:text-primary${activeSubCat === sub.value ? " bg-primary-light text-primary" : " text-muted"}`}
                         onMouseEnter={() => setActiveSubCat(sub.value)}
                       >
-                        {sub.label}
+                        {tR(`subCategories.${sub.value}`)}
                       </div>
                     ))}
                   </div>
@@ -154,7 +158,7 @@ useEffect(() => {
                             className="flex items-center gap-2 px-2 py-1 rounded-md text-[0.9rem] font-medium text-foreground no-underline whitespace-nowrap transition-colors duration-150 hover:text-primary"
                           >
                             {ToolIcon && <ToolIcon size={13} />}
-                            {tool.name}
+                            {tR(`tools.${tool.href.split("/").pop()}.name`)}
                           </Link>
                         );
                       })}
@@ -175,7 +179,7 @@ useEffect(() => {
           >
             <div className="inline-flex items-center gap-2 px-2.5 py-1.5 rounded-md text-base font-medium text-foreground hover:text-primary transition-colors duration-150 cursor-pointer">
               <MdLanguage size={18} />
-              <span>{language.code}</span>
+              <span>{languages.find(l => l.locale === locale)?.code ?? locale.toUpperCase()}</span>
               <BiChevronDown />
             </div>
             {openLanguage && (
@@ -183,8 +187,8 @@ useEffect(() => {
                 {languages.map((lang) => (
                   <li
                     key={lang.code}
-                    className={`flex items-center gap-[0.6rem] px-[0.6rem] py-[0.4rem] rounded-md cursor-pointer transition-colors duration-150 hover:bg-primary-light hover:text-primary${language.code === lang.code ? " text-primary font-semibold" : " text-foreground"}`}
-                    onClick={() => setLanguage(lang)}
+                    className={`flex items-center gap-[0.6rem] px-[0.6rem] py-[0.4rem] rounded-md cursor-pointer transition-colors duration-150 hover:bg-primary-light hover:text-primary${locale === lang.locale ? " text-primary font-semibold" : " text-foreground"}`}
+                    onClick={() => router.replace(pathname, { locale: lang.locale })}
                   >
                     <span className="text-[0.8rem] font-bold min-w-8">
                       {lang.code}
@@ -224,14 +228,14 @@ useEffect(() => {
                       className="flex flex-row items-center gap-2.5 px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
                     >
                       <BiUser size={18}/>
-                      Profile
+                      {t("profile")}
                     </Link>
                     <button
                       onClick={handleLogout}
                       className="flex flex-row items-center gap-2.5 text-left px-6 py-2 border-t border-border hover:text-primary hover:bg-primary-light cursor-pointer"
                     >
                       <BiLogOut size={18}/>
-                      Sign Out
+                      {t("signOut")}
                     </button>
                   </div>
                 </div>
@@ -242,7 +246,7 @@ useEffect(() => {
               href={`/auth/login?redirect=${encodeURIComponent(pathname)}`}
               className="bg-primary text-white px-[1.1rem] py-[0.4rem] rounded-md whitespace-nowrap hover:bg-primary-hover transition-colors duration-150 no-underline"
             >
-              Sign In
+              {t("signIn")}
             </Link>
           )}
         </div>
